@@ -1,48 +1,58 @@
 var io = require( 'socket.io' )( 3000 ),
-    torrentStream = require( 'torrent-stream'),
-    memoryStorage = require( 'torrent-memory-storage' );
+    torrentStream = require( 'torrent-stream')
+
+    // memoryStorage = require( 'torrent-memory-storage' )
 
 io.on( 'connection', function( socket ) {
-  console.log( 'incoming connection', socket.id );
- 
-  var engine;
+  console.log( 'incoming connection', socket.id )
 
-  socket.on( 'streamrequest', function(e) {
+  var engine
 
-     engine = null;
+  socket.on( 'streamrequest', function( request ) {
+    console.log( 'got streamrequest', request )
+    engine = torrentStream( request.magnet )
 
-    console.log( 'got streamRequest', e );
-/*
-    models.Song.findOne({ where: { id: e.id }, include: [ models.Torrent ] }).then( function( song ) {
-      if( song ) {
-        engine = torrentStream( song.Torrent.magnetLink, { storage: memoryStorage } );
-        engine.on( 'ready', function() {
-          engine.files.forEach( function( file ) {
-            if( file.name.indexOf( song.fileName ) > -1 ) {
-              var stream = file.createReadStream(),
-                  totalChunks = 0;
-              stream.on( 'data', function( chunk ) {
-                var data =  { id: e.id, audioData: chunk.toString('base64') };
-                if( totalChunks == 0 ) {
-                  console.log( 'first chunk, attach meta!' );
-                  // data.duration = match.duration;
-                };
-                socket.emit( 'chunk', data );
-                totalChunks++;
-              });
+    engine.on( 'ready', function() {
+      console.log( 'engine ready' )
 
-              stream.on( 'end', function() {
-                socket.emit( 'streamEnd', { id: e.id, totalChunks: totalChunks } );
-              });
+      engine.files.forEach( function( file ) {
+        if( file.name.indexOf( request.filename ) > -1 ) {
+          var stream = file.createReadStream(), totalChunks = 0
 
-            };
-          });
-        });
-      } else {
-        console.log( 'song not found' );
-      };
-    });
-*/
+          stream.on( 'data', function( chunk ) {
+            var data = { audioData: chunk.toString( 'base64' ) }
+            if( totalChunks == 0 ) {
+              console.log( 'first chunk?' )
+            }
+            console.log( 'sending chunk #', totalChunks )
+            socket.emit( 'streamchunk', data )
+            totalChunks++
+          })
+
+          stream.on( 'end', function() {
+            socket.emit( 'streamend', {} )
+          })
+        }
+      })
+
+      /*
+      engine.files.forEach( function( file ) {
+        if( file.name.indexOf( request.filename ) > -1 ) {
+          var stream, totalChunks = 0
+          stream.on( 'data', function( chunk ) {
+            var data = { audioData: chunk.toString( 'base64' ) }
+            if( totalChunks == 0 ) {
+              console.log( 'first chunk!' )
+            }
+            socket.emit( 'streamchunk', data )
+            totalChunks++
+          })
+          stream.on( 'end', function() {
+            socket.emit( 'streamend', {} )
+          })
+        }
+      })*/
+    })
 
   });
 
