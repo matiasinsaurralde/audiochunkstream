@@ -1,0 +1,22 @@
+{
+  "name": "audiochunkstream",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matiasinsaurralde/audiochunkstream.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matiasinsaurralde/audiochunkstream/issues"
+  },
+  "homepage": "https://github.com/matiasinsaurralde/audiochunkstream#readme",
+  "dependencies": {
+    "socket.io": "^1.3.7"
+  }
+}
