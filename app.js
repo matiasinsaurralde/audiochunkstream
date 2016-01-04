@@ -36,8 +36,7 @@ angular.module( 'app', [ 'btford.socket-io', 'chunked-audio' ] )
             },
             function( audioData, event, socket ) {
               console.log( 'chunk?' )
-              var chunk = stream.decodeBase64( audioData ),
-                  index = stream.append( chunk );
+              var index = stream.append( audioData );
               console.log( 'chunk#', index );
               if( index == 1 ) {
                 player.play();
