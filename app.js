@@ -1,8 +1,8 @@
 angular.module( 'app', [ 'btford.socket-io', 'chunked-audio' ] )
 .factory( 'socket', function( socketFactory ) {
 
-  // var socket = socketFactory({ioSocket: io.connect('http://audiochunkstream-931d8e9c.matiasinsaurra7bf05fd94789439a.svc.tutum.io:3000')})
-  var socket = socketFactory({ioSocket: io.connect('127.0.0.1:3000') })
+   var socket = socketFactory({ioSocket: io.connect('http://audiochunkstream-931d8e9c.matiasinsaurra7bf05fd94789439a.svc.tutum.io:3000')})
+  // var socket = socketFactory({ioSocket: io.connect('127.0.0.1:3000') })
 
   socket.streamrequest = function( params ) {
     this.emit( 'streamrequest', params );
