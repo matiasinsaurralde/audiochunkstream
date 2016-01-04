@@ -1,0 +1,19 @@
+{
+  "name": "audiochunkstream",
+  "homepage": "https://github.com/matiasinsaurralde/audiochunkstream",
+  "authors": [
+    "Matias Insaurralde <matias@insaurral.de>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
