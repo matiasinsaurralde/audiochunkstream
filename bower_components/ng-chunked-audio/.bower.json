@@ -1,0 +1,28 @@
+{
+  "name": "ng-chunked-audio",
+  "homepage": "https://github.com/matiasinsaurralde/ng-chunked-audio",
+  "authors": [
+    "Matias Insaurralde <matias@insaurral.de>"
+  ],
+  "keywords": [
+    "audio"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "09aab721e7",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "09aab721e7e3c862a7dc3e81cfb0b78ca4e2c030"
+  },
+  "_source": "git://github.com/matiasinsaurralde/ng-chunked-audio.git",
+  "_target": "*",
+  "_originalSource": "ng-chunked-audio",
+  "_direct": true
+}

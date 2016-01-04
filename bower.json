@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-socket-io": "~0.7.0"
+    "angular-socket-io": "~0.7.0",
+    "ng-chunked-audio": "*"
   }
 }
