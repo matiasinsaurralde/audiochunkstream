@@ -19,7 +19,7 @@ io.on( 'connection', function( socket ) {
           var stream = file.createReadStream(), totalChunks = 0
 
           stream.on( 'data', function( chunk ) {
-            var data = { audioData: chunk.toString( 'base64' ) }
+            var data = { audioData: chunk }
             if( totalChunks == 0 ) {
               console.log( 'first chunk?' )
             }
