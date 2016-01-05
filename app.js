@@ -1,7 +1,7 @@
 angular.module( 'app', [ 'btford.socket-io', 'chunked-audio' ] )
 .factory( 'socket', function( socketFactory ) {
 
-  var socket = socketFactory({ioSocket: io.connect('http://audiochunkstream-931d8e9c.matiasinsaurra7bf05fd94789439a.svc.tutum.io:3000')})
+   var socket = socketFactory({ioSocket: io.connect('http://audiochunkstream-931d8e9c.matiasinsaurra7bf05fd94789439a.svc.tutum.io:3000')})
   // var socket = socketFactory({ioSocket: io.connect('127.0.0.1:3000') })
 
   socket.streamrequest = function( params ) {
@@ -36,8 +36,7 @@ angular.module( 'app', [ 'btford.socket-io', 'chunked-audio' ] )
             },
             function( audioData, event, socket ) {
               console.log( 'chunk?' )
-              var chunk = stream.decodeBase64( audioData ),
-                  index = stream.append( chunk );
+              var index = stream.append( audioData );
               console.log( 'chunk#', index );
               if( index == 1 ) {
                 player.play();
